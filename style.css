@@ -1,4 +1,4 @@
-/* General Body  */
+/* General Body Styling */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -8,55 +8,55 @@ body {
     text-align: center;
 }
 
-/* Header  */
 h1 {
     font-size: 2.5rem;
     color: #4CAF50;
     margin-top: 20px;
 }
 
-/* Output Paragraph  */
 #output {
     font-size: 1.2rem;
     color: #555;
-    margin: 20px 0;
+    margin: 20px auto;
     padding: 10px;
     background-color: #fff;
     border: 1px solid #ddd;
     border-radius: 5px;
-    display: inline-block;
     width: 80%;
     max-width: 600px;
     word-wrap: break-word;
     text-align: left;
+    display: none; /* Initially hidden */
 }
 
-/* Button  */
+/* Button Styling */
 button {
-    font-size: 1rem;
-    padding: 10px 20px;
-    margin: 10px 0;
+    font-size: 1.5rem; /* Increased size */
+    padding: 15px 30px; /* Larger padding */
+    margin: 20px 0;
     background-color: #4CAF50;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
+    transition: background-color 0.3s ease, transform 0.2s ease;
 }
 
 button:hover {
     background-color: #45a049;
+    transform: scale(1.05); /* Slightly enlarge on hover */
 }
 
 button:active {
     background-color: #3e8e41;
+    transform: scale(1); /* Reset size on click */
 }
 
 /* Video Styling */
 video {
     border: 2px solid #4CAF50;
     border-radius: 5px;
-    display: none; 
+    display: none; /* Hidden initially */
     margin: 20px auto;
     max-width: 100%;
     width: 300px;
@@ -81,8 +81,8 @@ body {
     }
 
     button {
-        font-size: 0.9rem;
-        padding: 8px 16px;
+        font-size: 1.2rem;
+        padding: 12px 24px;
     }
 
     #output {
