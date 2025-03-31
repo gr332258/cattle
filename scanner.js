@@ -39,7 +39,12 @@ document.addEventListener('DOMContentLoaded', () => {
                     localStorage.setItem('cattleScans', JSON.stringify(allScanData));
 
                     // Show scanned data
-                    outputElement.textContent = `Scanned Data:\n${scannedText}`;
+                    const locations = allScanData[cattleId].locations;
+                    const latestLocation = locations[locations.length - 1];
+                    let locationHistory = locations.map(loc => `• ${loc.lat}, ${loc.lng} at ${loc.timestamp}`).join('\n');
+                    
+                    // Show scanned data + location history
+                    outputElement.textContent = `Scanned Data:\n${scannedText}\n\nLocation History:\n${locationHistory}`;
                     outputElement.style.display = 'block';
                     console.log(scannedText);
                     scanner.stop();
