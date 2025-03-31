@@ -40,12 +40,21 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Show scanned data
                     const locations = allScanData[cattleId].locations;
-                    const latestLocation = locations[locations.length - 1]; //last index in the array
-                    let locationHistory = locations.map(loc => `• ${loc.lat}, ${loc.lng} at ${loc.timestamp}`).join('\n');
+                    const latestLocation = locations[locations.length - 1];
                     
                     // Show scanned data + location history
-                    outputElement.textContent = `Scanned Data:\n${scannedText}\n\nLocation History:\n${locationHistory}`;
+                    outputElement.innerHTML = `
+                    <pre>Scanned Data:\n${scannedText}\n\nLatest Location:\n${latestLocation.lat}, ${latestLocation.lng} at ${latestLocation.timestamp}</pre>
+                    <button id="toggle-history">See Location History</button>
+                    <pre id="full-history" style="display:none;">${locations.map(loc => `• ${loc.lat}, ${loc.lng} at ${loc.timestamp}`).join('\n')}</pre>
+                    `;
                     outputElement.style.display = 'block';
+                    //Show the full history section 
+                    document.getElementById('toggle-history').addEventListener('click', () => {
+                        const history = document.getElementById('full-history');
+                        history.style.display = history.style.display === 'none' ? 'block' : 'none';
+                    });
+
                     console.log(scannedText);
                     scanner.stop();
                     videoElement.style.display = 'none';
