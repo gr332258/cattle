@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                     // Show scanned data
                     const locations = allScanData[cattleId].locations;
-                    const latestLocation = locations[locations.length - 1];
+                    const latestLocation = locations[locations.length - 1]; //last index in the array
                     let locationHistory = locations.map(loc => `• ${loc.lat}, ${loc.lng} at ${loc.timestamp}`).join('\n');
                     
                     // Show scanned data + location history
