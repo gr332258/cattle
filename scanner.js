@@ -18,23 +18,24 @@ document.addEventListener('DOMContentLoaded', () => {
                     const lng = pos.coords.longitude;
 
                     //get data from previous scans in local storage
-                 const allScanData = JSON.parse(localStorage.getItem('cattleScans') || '{}');
+                    const allScanData = JSON.parse(localStorage.getItem('cattleScans') || '{}');
 
-                 //if its the first scan
-                 if (!allScanData[cattleId]) {
-                    allScanData[cattleId] = {
-                        info: scannedText,
-                        locations: []
-                    };
-                }
+                    //if its the first scan
+                    if (!allScanData[cattleId]) {
+                        allScanData[cattleId] = {
+                            info: scannedText,
+                            locations: []
+                        };
+                    }
 
-                //save location and timestamp
-                allScanData[cattleId].locations.push({
-                    lat: lat,
-                    lng: lng,
-                    timestamp: currentTime
-                });
-                // Save updated data
+                    //save location and timestamp
+                    allScanData[cattleId].locations.push({
+                        lat: lat,
+                        lng: lng,
+                        timestamp: currentTime
+                    });
+
+                    // Save updated data
                     localStorage.setItem('cattleScans', JSON.stringify(allScanData));
 
                     // Show scanned data
@@ -44,11 +45,11 @@ document.addEventListener('DOMContentLoaded', () => {
                     scanner.stop();
                     videoElement.style.display = 'none';
                 });
-            });
+            }); 
         }
 
+        videoElement.style.display = 'block'; // Move this before scanner.start()
         try {
-            videoElement.style.display = 'block'; // Show the video element
             await scanner.start();
         } catch (error) {
             outputElement.textContent = 'Error: Unable to access camera.';
@@ -57,9 +58,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 });
+
 // Helper to extract Cattle ID
 function extractCattleId(data) {
     const match = data.match(/Cattle ID:\s*(\d+)/);
     return match ? match[1] : 'unknown';
 }
-
